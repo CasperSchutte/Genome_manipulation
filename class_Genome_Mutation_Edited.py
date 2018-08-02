@@ -50,6 +50,10 @@ class GenomeMutation:
         inverted_fragment = fragment[::-1]
         #new_sequence.replace(fragment,inverted_fragment)
         new_sequence = new_sequence[0:start_position-1] + inverted_fragment + new_sequence[end_position-1:]
+        # This block might also suffer from the same problem as the one below, for example when 5 and 10
+        # are chosen as the start and end, inversion happens from positions 5 to position 9. In other words
+        # the start position is included in the inversion and the specified end position is not. Did not change it
+        # as I didn't know if it was intentional or not.
         return new_sequence
 
     def Translocation(self, template_sequence, start_position, end_position, new_position):
